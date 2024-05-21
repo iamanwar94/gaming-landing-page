@@ -1,0 +1,101 @@
+.link-cards-container {
+  position: relative;
+  z-index: 3;
+  margin-top: 100px;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.card {
+  width: 150px;
+  height: 200px;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.slider {
+  position: fixed;
+  top: 0;
+  right: -300px; /* Hidden off-screen initially */
+  width: 300px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s ease;
+  z-index: 4;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slider.open {
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80%;
+    margin-bottom: 20px;
+  }
+
+  .slider {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .slider {
+    width: 100%;
+    right: -100%; /* Ensure slider is completely hidden off-screen initially */
+  }
+
+  .slider.open {
+    right: 0;
+  }
+}
