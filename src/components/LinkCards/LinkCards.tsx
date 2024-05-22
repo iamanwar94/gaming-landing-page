@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SlClose } from "react-icons/sl";
 import discord from "../../assets/discord.png";
 import store from "../../assets/store.png";
@@ -8,8 +8,11 @@ import green from "../../assets/Emerald.png";
 import gold from "../../assets/Gold.png";
 import white from "../../assets/Iron.png";
 import red from "../../assets/Redstone.png";
+import diamond from "../../assets/Diamond.png";
+import obsidian from "../../assets/Obsidian.png";
 
 import "./LinkCards.css"; // Create this CSS file if necessary
+import { getServerStatus } from "../../api/api";
 
 interface ImageCard {
   id: number;
@@ -26,8 +29,39 @@ interface SliderLinks {
   link: string;
 }
 
+interface Status {
+  status: boolean | string;
+  players?: { online: number };
+}
+
 const LinkCards = () => {
-  const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [isSliderOpen, setIsSliderOpen] = useState<boolean>(false);
+  const [serverStatus, setServerStatus] = useState<Status>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchServerStatus();
+    }, 1000);
+
+    const intervalId = setInterval(fetchServerStatus, 30000);
+
+    return () => {
+      clearTimeout(timer);
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  const fetchServerStatus = async () => {
+    try {
+      const status = await getServerStatus();
+      console.log("loading => status", status);
+      if (status) {
+        setServerStatus(status);
+      }
+    } catch (error) {
+      console.log("Error");
+    }
+  };
 
   const handleCardClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -51,14 +85,14 @@ const LinkCards = () => {
       title: "Discord",
       desc: "Chat on our",
       image: discord,
-      link: "https://discord.com/invite/ePdJr3nra7",
+      link: "https://discord.gg/kekXKkjh",
     },
     {
       id: 2,
       title: "Store",
       desc: "Donate on our",
       image: store,
-      link: "https://store.skylyfe.net/",
+      link: "https://store.roguemc.org/",
     },
     {
       id: 3,
@@ -67,13 +101,6 @@ const LinkCards = () => {
       image: voting,
       link: "",
     },
-    {
-      id: 4,
-      title: "Wiki",
-      desc: "Learn more on our",
-      image: discord,
-      link: "https://info.skylyfe.net/",
-    },
   ];
 
   const sliderLinks: SliderLinks[] = [
@@ -81,31 +108,43 @@ const LinkCards = () => {
       id: 1,
       title: "Minecraft Buzz",
       image: blue,
-      link: "https://minecraft.buzz/",
+      link: "https://www.curseforge.com/servers/minecraft/game/roguemc-network",
     },
     {
       id: 2,
       title: "Minecraft MP",
       image: green,
-      link: "https://minecraft-mp.com/server/274657/vote/",
+      link: "https://minecraft-mp.com/server-s326555",
     },
     {
       id: 3,
       title: "Best MC Servers",
       image: gold,
-      link: "https://best-minecraft-servers.co/server-skylyfe.17772/vote",
+      link: "https://best-minecraft-servers.co/server-roguemc-network.20997/vote",
     },
     {
       id: 4,
       title: "MC Servers",
       image: white,
-      link: "https://minecraftservers.org/vote/524690",
+      link: "https://servers-minecraft.net/server-roguemc-network.26123",
     },
     {
       id: 5,
       title: "MC Server List",
       image: red,
-      link: "https://minecraft-server-list.com/server/493255/vote/",
+      link: "https://minecraft-server-list.com/server/500934/",
+    },
+    {
+      id: 6,
+      title: "MC Server List 2",
+      image: obsidian,
+      link: "https://minecraft-server-list.com/server/500934/",
+    },
+    {
+      id: 7,
+      title: "MC Server List 3",
+      image: diamond,
+      link: "https://minecraft-server-list.com/server/500934/",
     },
   ];
 
@@ -128,10 +167,25 @@ const LinkCards = () => {
           </div>
         ))}
       </div>
+      <div className="server-status-container">
+        <div className="server-status-overlay"></div>
+        <div className="server-status">
+          {!serverStatus ? (
+            <>
+              Server Status <br /> <div>{"Offline"}</div>
+            </>
+          ) : (
+            <>
+              Player(s) online <br />{" "}
+              <div>{serverStatus.players?.online}</div>
+            </>
+          )}
+        </div>
+      </div>
       <div className={`slider ${isSliderOpen ? "open" : ""}`}>
-        <button onClick={handleCloseSlider}>
+        <span className="button" onClick={handleCloseSlider}>
           <SlClose />
-        </button>
+        </span>
         <div className="slider-links">
           {sliderLinks.map((link) => (
             <div
