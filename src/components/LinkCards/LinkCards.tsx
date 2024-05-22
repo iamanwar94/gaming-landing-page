@@ -3,12 +3,25 @@ import { SlClose } from "react-icons/sl";
 import discord from "../../assets/discord.png";
 import store from "../../assets/store.png";
 import voting from "../../assets/vote.png";
+import blue from "../../assets/Diamond.png";
+import green from "../../assets/Emerald.png";
+import gold from "../../assets/Gold.png";
+import white from "../../assets/Iron.png";
+import red from "../../assets/Redstone.png";
+
 import "./LinkCards.css"; // Create this CSS file if necessary
 
 interface ImageCard {
   id: number;
   title: string;
   desc: string;
+  image: string;
+  link: string;
+}
+
+interface SliderLinks {
+  id: number;
+  title: string;
   image: string;
   link: string;
 }
@@ -63,34 +76,36 @@ const LinkCards = () => {
     },
   ];
 
-  const sliderLinks: ImageCard[] = [
+  const sliderLinks: SliderLinks[] = [
     {
       id: 1,
-      title: "Discord",
-      desc: "Chat on our",
-      image: discord,
-      link: "https://discord.com/invite/ePdJr3nra7",
+      title: "Minecraft Buzz",
+      image: blue,
+      link: "https://minecraft.buzz/",
     },
     {
       id: 2,
-      title: "Store",
-      desc: "Donate on our",
-      image: store,
-      link: "https://store.skylyfe.net/",
+      title: "Minecraft MP",
+      image: green,
+      link: "https://minecraft-mp.com/server/274657/vote/",
     },
     {
       id: 3,
-      title: "Voting",
-      desc: "Support us by",
-      image: voting,
-      link: "",
+      title: "Best MC Servers",
+      image: gold,
+      link: "https://best-minecraft-servers.co/server-skylyfe.17772/vote",
     },
     {
       id: 4,
-      title: "Wiki",
-      desc: "Learn more on our",
-      image: discord,
-      link: "https://info.skylyfe.net/",
+      title: "MC Servers",
+      image: white,
+      link: "https://minecraftservers.org/vote/524690",
+    },
+    {
+      id: 5,
+      title: "MC Server List",
+      image: red,
+      link: "https://minecraft-server-list.com/server/493255/vote/",
     },
   ];
 
@@ -131,7 +146,6 @@ const LinkCards = () => {
               />
               <div className="slider-link-content">
                 <h3>{link.title}</h3>
-                <p>{link.desc}</p>
               </div>
             </div>
           ))}

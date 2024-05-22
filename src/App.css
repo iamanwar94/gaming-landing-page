@@ -106,9 +106,6 @@ h1 {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .h1 {
-    font-size: 1.5em;
-  }
 
   .cards-container {
     flex-direction: column;

@@ -1,6 +1,7 @@
 import "./App.css";
 import { Snowfall } from "react-snowfall";
 import LinkCards from "./components/LinkCards/LinkCards";
+import logo from "./assets/ip bar icon (optional).png";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <div className="content">
         <Snowfall snowflakeCount={40} wind={[1, 0.5]} radius={[0.5, 1]} />
 
-        <h1>Your Logo Here</h1>
+        <h1>
+          <img src={logo} alt={"logo"} height={300} width={300} />
+        </h1>
         <LinkCards />
       </div>
     </div>

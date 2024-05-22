@@ -2,7 +2,7 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  margin-top: 200px;
+  margin-top: 100px;
 }
 
 .cards-container {
@@ -14,7 +14,7 @@
 }
 
 .card {
-  height: 200px;
+  height: 160px;
   background-color: rgba(
     255,
     255,
@@ -75,18 +75,18 @@
 }
 .slider button {
   box-shadow: -2px 0 5px rgba(209, 207, 207, 0.5);
-  background-color: red;
+  background-color: white;
   color: black;
   font-size: 20px;
-  margin: 0;
   padding: 5px 10px;
 }
 
-.slider button:hover {
+/* .slider button:hover {
   box-shadow: -2px 0 5px rgba(209, 207, 207, 0.5);
   outline: 0;
   border: 0;
-}
+  transform: scale(1);
+} */
 
 .slider {
   position: fixed;
@@ -127,6 +127,11 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.slider-link:hover {
+  transform: scale(1.1);
 }
 
 .slider-link-image {
@@ -138,7 +143,7 @@
 
 .slider-link-content h3 {
   margin: 0;
-  font-size: 16px;
+  font-size: 13px;
 }
 
 .slider-link-content p {
@@ -178,12 +183,15 @@
 }
 
 @media (max-width: 480px) {
+  .link-cards-container {
+    margin-top: 20px;
+  }
   .cards-container {
     margin-top: 20px;
     flex-wrap: nowrap;
     flex-direction: row;
     animation: ticker 20s linear infinite;
-    width: 200%;
+    width: 160%;
     overflow: hidden;
     white-space: nowrap;
   }
