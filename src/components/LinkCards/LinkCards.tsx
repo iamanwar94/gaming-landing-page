@@ -183,7 +183,6 @@ const LinkCards = () => {
         className="server-status-container"
         onClick={() => handleCopyClick()}
       >
-        <div className="server-status-overlay"></div>
         <div className="server-status">
           {!serverStatus ? (
             <>
@@ -199,7 +198,13 @@ const LinkCards = () => {
       {isCopied && <div className="copy-notification">IP Copied</div>}
       <div className={`slider ${isSliderOpen ? "open" : ""}`}>
         <span className="button" onClick={handleCloseSlider}>
-          <img src={barrier} alt={"close"} className="" height={30} width={30} />
+          <img
+            src={barrier}
+            alt={"close"}
+            className=""
+            height={30}
+            width={30}
+          />
         </span>
         <div className="slider-links">
           {sliderLinks.map((link) => (
