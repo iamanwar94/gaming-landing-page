@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { SlClose } from "react-icons/sl";
 import discord from "../../assets/discord.png";
 import store from "../../assets/store.png";
 import voting from "../../assets/vote.png";
@@ -10,6 +9,7 @@ import white from "../../assets/Iron.png";
 import red from "../../assets/Redstone.png";
 import diamond from "../../assets/Diamond.png";
 import obsidian from "../../assets/Obsidian.png";
+import barrier from "../../assets/BarrierNew.webp";
 
 import "./LinkCards.css"; // Create this CSS file if necessary
 import { getServerStatus } from "../../api/api";
@@ -32,11 +32,13 @@ interface SliderLinks {
 interface Status {
   status: boolean | string;
   players?: { online: number };
+  hostname?: string;
 }
 
 const LinkCards = () => {
   const [isSliderOpen, setIsSliderOpen] = useState<boolean>(false);
   const [serverStatus, setServerStatus] = useState<Status>(null);
+  const [isCopied, setIsCopied] = useState<boolean>(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -50,6 +52,16 @@ const LinkCards = () => {
       clearInterval(intervalId);
     };
   }, []);
+
+  const handleCopyClick = () => {
+    navigator.clipboard
+      .writeText(serverStatus.hostname)
+      .then(() => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      })
+      .catch((error) => console.error("Error copying text: ", error));
+  };
 
   const fetchServerStatus = async () => {
     try {
@@ -167,7 +179,10 @@ const LinkCards = () => {
           </div>
         ))}
       </div>
-      <div className="server-status-container">
+      <div
+        className="server-status-container"
+        onClick={() => handleCopyClick()}
+      >
         <div className="server-status-overlay"></div>
         <div className="server-status">
           {!serverStatus ? (
@@ -176,15 +191,15 @@ const LinkCards = () => {
             </>
           ) : (
             <>
-              Player(s) online <br />{" "}
-              <div>{serverStatus.players?.online}</div>
+              Player(s) online <br /> <div>{serverStatus.players?.online}</div>
             </>
           )}
         </div>
       </div>
+      {isCopied && <div className="copy-notification">IP Copied</div>}
       <div className={`slider ${isSliderOpen ? "open" : ""}`}>
         <span className="button" onClick={handleCloseSlider}>
-          <SlClose />
+          <img src={barrier} alt={"close"} className="" height={30} width={30} />
         </span>
         <div className="slider-links">
           {sliderLinks.map((link) => (
