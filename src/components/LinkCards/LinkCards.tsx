@@ -7,7 +7,7 @@ import green from "../../assets/Emerald.png";
 import gold from "../../assets/Gold.png";
 import white from "../../assets/Iron.png";
 import red from "../../assets/Redstone.png";
-import diamond from "../../assets/Diamond.png";
+// import diamond from "../../assets/Diamond.png";
 import obsidian from "../../assets/Obsidian.png";
 import barrier from "../../assets/BarrierNew.webp";
 
@@ -118,7 +118,7 @@ const LinkCards = () => {
   const sliderLinks: SliderLinks[] = [
     {
       id: 1,
-      title: "Minecraft Buzz",
+      title: "Curseforge Servers",
       image: blue,
       link: "https://www.curseforge.com/servers/minecraft/game/roguemc-network",
     },
@@ -130,34 +130,34 @@ const LinkCards = () => {
     },
     {
       id: 3,
-      title: "Best MC Servers",
+      title: "Minecraft Servers Org",
       image: gold,
-      link: "https://best-minecraft-servers.co/server-roguemc-network.20997/vote",
+      link: "https://minecraftservers.org/server/657415",
     },
     {
       id: 4,
-      title: "MC Servers",
+      title: "MCSL",
       image: white,
-      link: "https://servers-minecraft.net/server-roguemc-network.26123",
+      link: "https://minecraft-server-list.com/server/500934/",
     },
     {
       id: 5,
-      title: "MC Server List",
+      title: "Servers Minecraft Net",
       image: red,
-      link: "https://minecraft-server-list.com/server/500934/",
+      link: "https://servers-minecraft.net/server-roguemc-network.26123",
     },
     {
       id: 6,
-      title: "MC Server List 2",
+      title: "Best Minecraft Servers",
       image: obsidian,
-      link: "https://minecraft-server-list.com/server/500934/",
+      link: "https://best-minecraft-servers.co/server-roguemc-network.20997/vote",
     },
-    {
-      id: 7,
-      title: "MC Server List 3",
-      image: diamond,
-      link: "https://minecraft-server-list.com/server/500934/",
-    },
+    // {
+    //   id: 7,
+    //   title: "MC Server List 3",
+    //   image: diamond,
+    //   link: "https://minecraft-server-list.com/server/500934/",
+    // },
   ];
 
   return (
@@ -186,11 +186,12 @@ const LinkCards = () => {
         <div className="server-status">
           {!serverStatus ? (
             <>
-              Server Status <br /> <div>{"Offline"}</div>
+              <div>{"Server isn't online"}</div>
             </>
           ) : (
             <>
-              Player(s) online <br /> <div>{serverStatus.players?.online}</div>
+              <div>Click to copy IP</div>
+              <div>Online Players: {serverStatus.players?.online}</div>
             </>
           )}
         </div>

@@ -35,7 +35,7 @@
   cursor: pointer;
   overflow: hidden; /* Ensure images do not overflow out of the cards */
   margin: 30px;
-  margin: 0 100px;
+  margin: 0 80px;
 }
 
 .card:hover {
@@ -250,7 +250,7 @@
 
   .card {
     display: inline-block;
-    margin: 6px;
+    margin: 5px;
     height: 50%;
     width: 100px;
   }
@@ -266,10 +266,11 @@
 
   .server-status-container {
     margin-top: 20px;
-    width: 240px;
+    width: 260px;
     height: 180px;
     border-radius: 50%;
     -webkit-tap-highlight-color: transparent;
     /* font-family: Arial, Helvetica, sans-serif; */
+    font-size: 8px;
   }
 }
