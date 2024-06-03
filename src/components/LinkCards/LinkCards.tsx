@@ -7,9 +7,9 @@ import green from "../../assets/Emerald.png";
 import gold from "../../assets/Gold.png";
 import white from "../../assets/Iron.png";
 import red from "../../assets/Redstone.png";
-// import diamond from "../../assets/Diamond.png";
 import obsidian from "../../assets/Obsidian.png";
 import barrier from "../../assets/BarrierNew.webp";
+import lapiz from "../../assets/Lapiz.png";
 
 import "./LinkCards.css"; // Create this CSS file if necessary
 import { getServerStatus } from "../../api/api";
@@ -152,12 +152,12 @@ const LinkCards = () => {
       image: obsidian,
       link: "https://best-minecraft-servers.co/server-roguemc-network.20997/vote",
     },
-    // {
-    //   id: 7,
-    //   title: "MC Server List 3",
-    //   image: diamond,
-    //   link: "https://minecraft-server-list.com/server/500934/",
-    // },
+    {
+      id: 7,
+      title: "TopMinecraft Servers",
+      image: lapiz,
+      link: "https://topminecraftservers.org/server/36146",
+    },
   ];
 
   return (
